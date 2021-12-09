@@ -39,7 +39,7 @@ public class TextTransformerController {
         try {
             return textTransformerService.transform(requestTextTransformModel);
         } catch (TextTransformNotFoundException exception) {
-            log.info("TransformNotFoundException: {}", exception.getMessage());
+            log.error("TransformNotFoundException: {}", exception.getMessage());
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, exception.getMessage());
         }
     }

@@ -31,14 +31,15 @@ public class TextTransformerService {
      * @throws TextTransformNotFoundException when set of text-transforms names contains unknown name
      */
     public ResponseTextTransformModel transform(RequestTextTransformModel requestTextTransformModel) throws TextTransformNotFoundException {
-        List<TextTransformer> textTransformerList = findTextTransformers(requestTextTransformModel.getTextTransformNamesSet());
+        List<TextTransformer> textTransformerList = findTextTransformers(requestTextTransformModel.getTextTransformNamesList());
         return applyTextTransforms(requestTextTransformModel, textTransformerList);
     }
 
-    private List<TextTransformer> findTextTransformers(Set<String> transformSet) throws TextTransformNotFoundException {
+    private List<TextTransformer> findTextTransformers(List<String> textTransformList) throws TextTransformNotFoundException {
         List<TextTransformer> transformNamesList = new LinkedList<>();
-        for (String transformName : transformSet) {
+        for (String transformName : textTransformList) {
             try {
+                log.debug("Looking for: {}", transformName);
                 Class<?> foundClass = Class.forName(TEXT_TRANSFORMERS_PACKAGE + transformName);
                 TextTransformer textTransformer = (TextTransformer) foundClass.getDeclaredConstructor().newInstance();
                 transformNamesList.add(textTransformer);
