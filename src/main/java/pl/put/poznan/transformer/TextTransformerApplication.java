@@ -1,13 +1,14 @@
-package pl.put.poznan.transformer.app;
+package pl.put.poznan.transformer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@SpringBootApplication(scanBasePackages = {"pl.put.poznan.transformer.rest"})
+@SpringBootApplication
 public class TextTransformerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TextTransformerApplication.class, args);
     }
+
 }
