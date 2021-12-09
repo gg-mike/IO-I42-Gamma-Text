@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import pl.put.poznan.transformer.exceptions.TextTransformNotFoundException;
-import pl.put.poznan.transformer.models.TextTransformModel;
+import pl.put.poznan.transformer.models.RequestTextTransformModel;
+import pl.put.poznan.transformer.models.ResponseTextTransformModel;
 import pl.put.poznan.transformer.services.TextTransformerService;
 
 /**
@@ -29,13 +30,14 @@ public class TextTransformerController {
 
     /**
      * Text transform endpoint
-     * @param textTransformModel request body in json
+     *
+     * @param requestTextTransformModel request body in json
      * @return TextTransformModel response body in json
      */
     @PostMapping
-    public TextTransformModel transform(@RequestBody TextTransformModel textTransformModel) {
+    public ResponseTextTransformModel transform(@RequestBody RequestTextTransformModel requestTextTransformModel) {
         try {
-            return textTransformerService.transform(textTransformModel);
+            return textTransformerService.transform(requestTextTransformModel);
         } catch (TextTransformNotFoundException exception) {
             log.info("TransformNotFoundException: {}", exception.getMessage());
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, exception.getMessage());

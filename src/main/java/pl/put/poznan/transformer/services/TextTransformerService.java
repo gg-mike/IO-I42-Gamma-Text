@@ -3,7 +3,8 @@ package pl.put.poznan.transformer.services;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.put.poznan.transformer.exceptions.TextTransformNotFoundException;
-import pl.put.poznan.transformer.models.TextTransformModel;
+import pl.put.poznan.transformer.models.RequestTextTransformModel;
+import pl.put.poznan.transformer.models.ResponseTextTransformModel;
 import pl.put.poznan.transformer.texttransformers.TextTransformer;
 
 import java.util.LinkedList;
@@ -25,14 +26,13 @@ public class TextTransformerService {
     /**
      * method which performs text transformation logic
      *
-     * @param textTransformModel input text to transform and set of text-transforms names
+     * @param requestTextTransformModel input text to transform and set of text-transforms names
      * @return transformed text and all transformation steps
      * @throws TextTransformNotFoundException when set of text-transforms names contains unknown name
      */
-    public TextTransformModel transform(TextTransformModel textTransformModel) throws TextTransformNotFoundException {
-        List<TextTransformer> textTransformerList = findTextTransformers(textTransformModel.getTextTransformNamesSet());
-        applyTextTransforms(textTransformModel, textTransformerList);
-        return textTransformModel;
+    public ResponseTextTransformModel transform(RequestTextTransformModel requestTextTransformModel) throws TextTransformNotFoundException {
+        List<TextTransformer> textTransformerList = findTextTransformers(requestTextTransformModel.getTextTransformNamesSet());
+        return applyTextTransforms(requestTextTransformModel, textTransformerList);
     }
 
     private List<TextTransformer> findTextTransformers(Set<String> transformSet) throws TextTransformNotFoundException {
@@ -47,18 +47,19 @@ public class TextTransformerService {
             }
         }
         return transformNamesList;
-
     }
 
-    private void applyTextTransforms(TextTransformModel textTransformModel, List<TextTransformer> textTransformerList) {
-        String transformedText = textTransformModel.getInputText();
-        List<String> textTransformationsList = new LinkedList<>();
+    private ResponseTextTransformModel applyTextTransforms(RequestTextTransformModel requestTextTransformModel, List<TextTransformer> textTransformerList) {
+        ResponseTextTransformModel responseTextTransformModel = new ResponseTextTransformModel();
+        responseTextTransformModel.setOriginalText(requestTextTransformModel.getInputText());
+        responseTextTransformModel.setTextTransformationsList(new LinkedList<>());
+        String transformedText = requestTextTransformModel.getInputText();
         for (TextTransformer textTransformer : textTransformerList) {
             transformedText = textTransformer.transform(transformedText);
-            textTransformationsList.add(transformedText);
+            responseTextTransformModel.getTextTransformationsList().add(transformedText);
         }
-        textTransformModel.setTextTransformationsList(textTransformationsList);
-        textTransformModel.setTransformedText(transformedText);
+        responseTextTransformModel.setTransformedText(transformedText);
+        return responseTextTransformModel;
     }
 
 }
