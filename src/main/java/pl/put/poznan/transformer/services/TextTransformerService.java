@@ -1,6 +1,7 @@
 package pl.put.poznan.transformer.services;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.put.poznan.transformer.exceptions.TextTransformNotFoundException;
 import pl.put.poznan.transformer.models.RequestTextTransformModel;
@@ -8,8 +9,7 @@ import pl.put.poznan.transformer.models.ResponseTextTransformModel;
 import pl.put.poznan.transformer.texttransformers.TextTransformer;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 /**
  * Service class with text transforming logic
@@ -21,7 +21,8 @@ import java.util.Set;
 @Service
 public class TextTransformerService {
 
-    private static final String TEXT_TRANSFORMERS_PACKAGE = "pl.put.poznan.transformer.texttransformers.";
+    @Autowired
+    private Map<String, TextTransformer> textTransformerMap;
 
     /**
      * method which performs text transformation logic
@@ -30,33 +31,16 @@ public class TextTransformerService {
      * @return transformed text and all transformation steps
      * @throws TextTransformNotFoundException when set of text-transforms names contains unknown name
      */
-    public ResponseTextTransformModel transform(RequestTextTransformModel requestTextTransformModel) throws TextTransformNotFoundException {
-        List<TextTransformer> textTransformerList = findTextTransformers(requestTextTransformModel.getTextTransformNamesList());
-        return applyTextTransforms(requestTextTransformModel, textTransformerList);
-    }
-
-    private List<TextTransformer> findTextTransformers(List<String> textTransformList) throws TextTransformNotFoundException {
-        List<TextTransformer> transformNamesList = new LinkedList<>();
-        for (String transformName : textTransformList) {
-            try {
-                log.debug("Looking for: {}", transformName);
-                Class<?> foundClass = Class.forName(TEXT_TRANSFORMERS_PACKAGE + transformName);
-                TextTransformer textTransformer = (TextTransformer) foundClass.getDeclaredConstructor().newInstance();
-                transformNamesList.add(textTransformer);
-            } catch (ReflectiveOperationException exception) {
-                throw new TextTransformNotFoundException(transformName);
-            }
-        }
-        return transformNamesList;
-    }
-
-    private ResponseTextTransformModel applyTextTransforms(RequestTextTransformModel requestTextTransformModel, List<TextTransformer> textTransformerList) {
+    public ResponseTextTransformModel applyTextTransformations(RequestTextTransformModel requestTextTransformModel) throws TextTransformNotFoundException {
         ResponseTextTransformModel responseTextTransformModel = new ResponseTextTransformModel();
         responseTextTransformModel.setOriginalText(requestTextTransformModel.getInputText());
         responseTextTransformModel.setTextTransformationsList(new LinkedList<>());
         String transformedText = requestTextTransformModel.getInputText();
-        for (TextTransformer textTransformer : textTransformerList) {
-            transformedText = textTransformer.transform(transformedText);
+        for (String transformName : requestTextTransformModel.getTextTransformNamesList()) {
+            if (!textTransformerMap.containsKey(transformName)) {
+                throw new TextTransformNotFoundException(transformName);
+            }
+            transformedText = textTransformerMap.get(transformName).transform(transformedText);
             responseTextTransformModel.getTextTransformationsList().add(transformedText);
         }
         responseTextTransformModel.setTransformedText(transformedText);

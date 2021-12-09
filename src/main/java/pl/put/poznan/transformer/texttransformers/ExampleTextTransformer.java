@@ -1,6 +1,7 @@
 package pl.put.poznan.transformer.texttransformers;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * Example implementation of TextTransformer
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * @see TextTransformer
  */
 @Slf4j
+@Component
 public class ExampleTextTransformer implements TextTransformer {
 
     /**

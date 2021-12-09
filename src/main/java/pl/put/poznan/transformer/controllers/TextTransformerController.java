@@ -35,9 +35,9 @@ public class TextTransformerController {
      * @return TextTransformModel response body in json
      */
     @PostMapping
-    public ResponseTextTransformModel transform(@RequestBody RequestTextTransformModel requestTextTransformModel) {
+    public ResponseTextTransformModel applyTextTransformations(@RequestBody RequestTextTransformModel requestTextTransformModel) {
         try {
-            return textTransformerService.transform(requestTextTransformModel);
+            return textTransformerService.applyTextTransformations(requestTextTransformModel);
         } catch (TextTransformNotFoundException exception) {
             log.error("TransformNotFoundException: {}", exception.getMessage());
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, exception.getMessage());
