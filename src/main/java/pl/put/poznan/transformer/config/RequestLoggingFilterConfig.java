@@ -4,9 +4,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
+/**
+ * Configuration class for debug logging incoming requests
+ *
+ * @author Piotr Parzysz
+ */
 @Configuration
 public class RequestLoggingFilterConfig {
 
+    /**
+     * config bean for logging incoming requests
+     * @return logging filter bean
+     */
     @Bean
     public CommonsRequestLoggingFilter logFilter() {
         CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();

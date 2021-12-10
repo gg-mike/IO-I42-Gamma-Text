@@ -15,10 +15,9 @@ import pl.put.poznan.transformer.services.TextTransformerService;
 
 /**
  * RestController class with text transforming endpoint
- * <p>
- * see also: @see TextTransformerService
- * <p>
- * Author: Piotr Parzsz
+ *
+ * @author Piotr Parzysz
+ * @see TextTransformerService
  */
 @Slf4j
 @RestController

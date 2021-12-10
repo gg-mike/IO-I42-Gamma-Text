@@ -3,8 +3,7 @@ package pl.put.poznan.transformer.exceptions;
 /**
  * Thrown when a particular TextTransformer cannot be found.
  *
- * @author Piotr Parzsz
- * @see pl.put.poznan.transformer.texttransformers.TextTransformer
+ * @author Piotr Parzysz
  */
 public class TextTransformNotFoundException extends RuntimeException {
 
