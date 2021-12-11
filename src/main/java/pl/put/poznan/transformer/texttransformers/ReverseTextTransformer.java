@@ -1,11 +1,13 @@
 package pl.put.poznan.transformer.texttransformers;
 
 /**
- * Reverse String but preserve the capitalization of letters (indexes of capitalized letters don't change).
+ * Reverse String but preserve the capitalization of letters (indexes of capitalized letters don't change)
  *
  * @author Michał Grygiel
  * @see TextTransformer
  */
+@Slf4j
+@Component
 public class ReverseTextTransformer implements TextTransformer {
     @Override
     public String transform(String text) {
