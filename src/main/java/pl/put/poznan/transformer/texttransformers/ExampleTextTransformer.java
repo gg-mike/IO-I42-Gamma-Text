@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 /**
  * Example implementation of TextTransformer
  *
- * @author Piotr Parzsz
+ * @author Piotr Parzysz
  * @see TextTransformer
  */
 @Slf4j

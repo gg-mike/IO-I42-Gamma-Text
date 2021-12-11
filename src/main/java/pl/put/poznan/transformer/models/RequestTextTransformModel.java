@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Model for input text transformations
  *
- * @author Piotr Parzsz
+ * @author Piotr Parzysz
  */
 @Data
 @ToString

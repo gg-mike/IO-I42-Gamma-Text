@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Model for output text transformations
  *
- * @author Piotr Parzsz
+ * @author Piotr Parzysz
  */
 @Data
 @ToString

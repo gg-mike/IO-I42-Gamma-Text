@@ -3,7 +3,7 @@ package pl.put.poznan.transformer.texttransformers;
 /**
  * Interface for TextTransformers
  *
- * @author Piotr Parzsz
+ * @author Piotr Parzysz
  */
 public interface TextTransformer {
 

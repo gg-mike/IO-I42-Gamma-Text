@@ -1,4 +1,9 @@
-logging.level.root: WARN
-logging.level.pl.put.poznan.transformer: DEBUG
-logging.level.org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
-server.error.include-message: always
+logging:
+  level:
+    root: WARN
+    pl.put.poznan.transformer: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+
+server:
+  error:
+    include-message: always

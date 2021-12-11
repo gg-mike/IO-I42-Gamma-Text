@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Service class with text transforming logic
  *
- * @author Piotr Parzsz
+ * @author Piotr Parzysz
  * @see TextTransformer
  */
 @Slf4j
