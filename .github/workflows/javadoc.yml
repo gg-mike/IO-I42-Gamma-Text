@@ -30,6 +30,9 @@ jobs:
         - name: fetch from master
           run: git fetch
 
+        - name: pull
+          run: git pull
+
         - name: check for changes
           run: git status
 
