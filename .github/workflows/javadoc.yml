@@ -27,11 +27,11 @@ jobs:
             rm -rf docs
             cp -rf target/site/apidocs/. docs
 
-        - name: fetch from master
-          run: git fetch
-
         - name: pull
           run: git pull
+
+        - name: fetch from master
+          run: git fetch
 
         - name: check for changes
           run: git status
