@@ -12,6 +12,8 @@ jobs:
     steps:
         - name: Checkout the repo
           uses: actions/checkout@v2
+          with:
+            ref: ${{ github.event.pull_request.head.ref }}
 
         - name: Set up the Java JDK
           uses: actions/setup-java@v2
@@ -44,4 +46,4 @@ jobs:
               git commit -m "add javadoc"
 
         - name: Push changes
-          run: git push origin/github-actions-javadoc
+          run: git push
