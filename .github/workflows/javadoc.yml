@@ -27,21 +27,7 @@ jobs:
             rm -rf docs
             cp -rf target/site/apidocs/. docs
 
-        - name: Tidy up the javadocs
-          id: tidy
-          uses: cicirello/javadoc-cleanup@v1
-          with:
-            path-to-root: docs
-
-        - name: Log javadoc-cleanup output
-          run: |
-            echo "modified-count = ${{ steps.tidy.outputs.modified-count }}"
-
         - name: Commit documentation changes
           run: |
-            if [[ `git status --porcelain` ]]; then
-              git config --global user.name 'Michael Grygiel'
-              git config --global user.email 'gg-mike@users.noreply.github.com'
-              git add -A
-              git commit -m "Automated API website updates."
-            fi
+              git add docs
+              git commit -m "add javadoc"
