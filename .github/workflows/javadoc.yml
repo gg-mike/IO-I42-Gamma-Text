@@ -27,6 +27,12 @@ jobs:
             rm -rf docs
             cp -rf target/site/apidocs/. docs
 
+        - name: fetch from master
+          run: git fetch
+
+        - name: check for changes
+          run: git status
+
         - name: Commit documentation changes
           run: |
               git config --global user.name 'Michael Grygiel'
