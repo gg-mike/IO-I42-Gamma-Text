@@ -44,4 +44,4 @@ jobs:
               git commit -m "add javadoc"
 
         - name: Push changes
-          uses: git push origin/github-actions-javadoc
+          run: git push
