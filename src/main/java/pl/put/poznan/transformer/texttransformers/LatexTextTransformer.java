@@ -43,6 +43,7 @@ public class LatexTextTransformer implements TextTransformer {
 
     @Override
     public String transform(String text) {
+        log.debug("in  = " + text);
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             if (specialSymbols.containsKey(text.charAt(i)))
@@ -50,6 +51,7 @@ public class LatexTextTransformer implements TextTransformer {
             else
                 builder.append(text.charAt(i));
         }
+        log.debug("out = " + builder);
         return builder.toString();
     }
 }
