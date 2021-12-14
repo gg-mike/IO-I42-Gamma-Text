@@ -1,0 +1,4 @@
+shortcut-config:
+  shortcuts:
+    - first: A
+      second: B
