@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class ReverseTextTransformer implements TextTransformer {
     @Override
     public String transform(String text) {
+        log.debug("in  = " + text);
         StringBuilder builder = new StringBuilder(text);
         builder.reverse();
         for (int i = 0; i < text.length(); i++) {
@@ -22,6 +23,7 @@ public class ReverseTextTransformer implements TextTransformer {
             else
                 builder.setCharAt(i, Character.toLowerCase(builder.charAt(i)));
         }
+        log.debug("out = " + builder);
         return builder.toString();
     }
 }
