@@ -1,4 +1,18 @@
 shortcut-config:
   shortcuts:
-    - first: A
-      second: B
+    - first: 'prof.\ '
+      second: 'profesor '
+    - first: 'Prof.\ '
+      second: 'Profesor '
+    - first: 'dr\ '
+      second: 'doktor '
+    - first: 'Dr\ '
+      second: 'Doktor '
+    - first: 'np.\ '
+      second: 'na przykład '
+    - first: 'Np.\ '
+      second: 'Na przykład '
+    - first: 'itd.\ '
+      second: 'i tym podobne '
+    - first: 'Itd.\ '
+      second: 'I tym podobne '
