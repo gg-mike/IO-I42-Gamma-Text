@@ -14,6 +14,7 @@ public class RequestLoggingFilterConfig {
 
     /**
      * config bean for logging incoming requests
+     *
      * @return logging filter bean
      */
     @Bean
