@@ -19,7 +19,8 @@ public class LetterSizeTransformerCapital implements TextTransformer {
         for (int i = 0; i < words.length; i++) {
             String resultWord = words[i].substring(0, 1).toUpperCase() + words[i].substring(1);
             result.append(resultWord);
-            result.append(" ");
+            if (i + 1 < words.length)
+                result.append(" ");
         }
     return result.toString();
     }
