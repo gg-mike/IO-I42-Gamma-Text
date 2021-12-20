@@ -3,9 +3,14 @@ package pl.put.poznan.transformer.texttransformers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/**
+ * Zmianać wielkości liter na capitalize
+ *
+ * @author Mikalai Chabatarevich
+ * @see TextTransformer
+ */
 @Slf4j
 @Component
-
 public class LetterSizeTransformerCapital implements TextTransformer {
     public String transform(String text){
         String[] words;
