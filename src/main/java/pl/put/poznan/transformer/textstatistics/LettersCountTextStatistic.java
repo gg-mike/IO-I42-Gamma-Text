@@ -15,7 +15,7 @@ public class LettersCountTextStatistic implements TextStatistic {
     public Object applyStatistic(String text) {
         return Arrays.stream(text.split(""))
                 .map(String::toUpperCase)
-                .filter(letter -> !letter.equals(" "))
+                .filter(letter -> !letter.isBlank())
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
