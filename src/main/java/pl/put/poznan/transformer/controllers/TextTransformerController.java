@@ -31,7 +31,7 @@ public class TextTransformerController {
      * Text transform endpoint
      *
      * @param requestTextTransform request body in json
-     * @return TextTransformModel response body in json
+     * @return ResponseTextTransform response body in json
      */
     @PostMapping
     public ResponseTextTransform applyTextTransformations(@RequestBody RequestTextTransform requestTextTransform) {

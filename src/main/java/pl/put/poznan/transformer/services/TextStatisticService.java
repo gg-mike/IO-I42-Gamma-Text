@@ -10,13 +10,28 @@ import pl.put.poznan.transformer.textstatistics.TextStatistic;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Service class with text statistics logic
+ *
+ * @author Piotr Parzysz
+ * @see TextStatistic
+ * @see RequestTextStatistic
+ * @see ResponseTextStatistic
+ */
 @Service
 public class TextStatisticService {
 
     @Autowired
     private Map<String, TextStatistic> textStatisticMap;
 
-    public ResponseTextStatistic applyTextStatistics(RequestTextStatistic requestTextStatistic) {
+    /**
+     * method which performs text statistics logic
+     *
+     * @param requestTextStatistic input text get statistics and set of text-statistics names
+     * @return text and all statistics
+     * @throws TextStatisticNotFoundException when list of text-statistics names contains unknown name
+     */
+    public ResponseTextStatistic applyTextStatistics(RequestTextStatistic requestTextStatistic) throws TextStatisticNotFoundException {
         Map<String, Object> textStatisticList = new HashMap<>();
         for (String statisticName : requestTextStatistic.getTextStatisticsNamesList()) {
             if (!textStatisticMap.containsKey(statisticName)) {

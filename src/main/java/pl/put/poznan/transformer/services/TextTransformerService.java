@@ -29,7 +29,7 @@ public class TextTransformerService {
      *
      * @param requestTextTransform input text to transform and set of text-transforms names
      * @return transformed text and all transformation steps
-     * @throws TextTransformNotFoundException when set of text-transforms names contains unknown name
+     * @throws TextTransformNotFoundException when list of text-transforms names contains unknown name
      */
     public ResponseTextTransform applyTextTransformations(RequestTextTransform requestTextTransform) throws TextTransformNotFoundException {
         ResponseTextTransform responseTextTransform = new ResponseTextTransform();

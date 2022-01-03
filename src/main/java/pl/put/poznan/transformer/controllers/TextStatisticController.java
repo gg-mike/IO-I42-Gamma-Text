@@ -13,6 +13,12 @@ import pl.put.poznan.transformer.models.RequestTextStatistic;
 import pl.put.poznan.transformer.models.ResponseTextStatistic;
 import pl.put.poznan.transformer.services.TextStatisticService;
 
+/**
+ * RestController class with text statistics endpoint
+ *
+ * @author Piotr Parzysz
+ * @see TextStatisticService
+ */
 @Slf4j
 @RestController
 @RequestMapping("/text-statistic")
@@ -21,6 +27,12 @@ public class TextStatisticController {
     @Autowired
     private TextStatisticService textStatisticService;
 
+    /**
+     * Text statistics endpoint
+     *
+     * @param requestTextStatistic request body in json
+     * @return ResponseTextStatistic response body in json
+     */
     @PostMapping
     public ResponseTextStatistic applyTextStatistics(@RequestBody RequestTextStatistic requestTextStatistic) {
         try {
