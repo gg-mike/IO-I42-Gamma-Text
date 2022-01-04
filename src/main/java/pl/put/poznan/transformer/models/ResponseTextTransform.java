@@ -2,7 +2,6 @@ package pl.put.poznan.transformer.models;
 
 
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.List;
 
@@ -12,8 +11,7 @@ import java.util.List;
  * @author Piotr Parzysz
  */
 @Data
-@ToString
-public class ResponseTextTransformModel {
+public class ResponseTextTransform {
 
     private String originalText;
     private String transformedText;
