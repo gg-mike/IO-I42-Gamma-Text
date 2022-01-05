@@ -9,7 +9,6 @@ import pl.put.poznan.transformer.config.YamlPropertySourceFactory;
 import pl.put.poznan.transformer.models.Pair;
 
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -31,10 +30,8 @@ public class LatexTextTransformer implements TextTransformer {
     public String transform(String text) {
         log.debug(latex.toString());
         log.debug("in  = " + text);
-        for (Pair<String> pair : latex) {
-            log.debug("pattern = " + Pattern.quote(pair.getFirst()));
+        for (Pair<String> pair : latex)
             text = text.replaceAll(Pattern.quote(pair.getFirst()), pair.getSecond());
-        }
         log.debug("out = " + text);
         return text;
     }
