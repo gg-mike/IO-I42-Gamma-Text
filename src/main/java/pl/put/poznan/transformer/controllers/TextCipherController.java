@@ -16,7 +16,7 @@ import pl.put.poznan.transformer.services.TextCipherService;
 /**
  * RestController class with text ciphers endpoint
  *
- * @author Piotr Parzysz
+ * @author Michał Grygiel
  * @see TextCipherService
  */
 @Slf4j

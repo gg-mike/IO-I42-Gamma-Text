@@ -4,6 +4,11 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * Model for input text ciphers
+ *
+ * @author Michał Grygiel
+ */
 @Data
 public class RequestTextCipher {
 
