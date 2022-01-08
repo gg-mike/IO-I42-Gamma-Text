@@ -4,5 +4,6 @@ pl.put.poznan.transformer.controllers
 pl.put.poznan.transformer.exceptions
 pl.put.poznan.transformer.models
 pl.put.poznan.transformer.services
+pl.put.poznan.transformer.textciphers
 pl.put.poznan.transformer.textstatistics
 pl.put.poznan.transformer.texttransformers
