@@ -1,15 +1,11 @@
 package pl.put.poznan.transformer.texttransformers;
 
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
-import pl.put.poznan.transformer.config.YamlPropertySourceFactory;
-import pl.put.poznan.transformer.models.Pair;
 
-import java.util.List;
-import java.util.regex.Pattern;
+import java.util.Map;
+
+import static java.util.Map.entry;
 
 /**
  * Changes characters to be compatible with Latex
@@ -17,22 +13,45 @@ import java.util.regex.Pattern;
  * @author Michał Grygiel
  * @see TextTransformer
  */
-@Data
 @Slf4j
 @Component
-@PropertySource(value = "classpath:latex.yml", factory = YamlPropertySourceFactory.class)
-@ConfigurationProperties(prefix = "latex-config")
 public class LatexTextTransformer implements TextTransformer {
-
-    private List<Pair<String>> latex;
+    private final Map<Character, String> specialSymbols = Map.ofEntries(
+            entry('%', "\\%"),
+            entry('$', "\\$"),
+            entry('{', "\\{"),
+            entry('}', "\\}"),
+            entry('_', "\\_"),
+            entry('¶', "\\P"),
+            entry('|', "\\textbar"),
+            entry('>', "\\textgreater"),
+            entry('<', "\\textless"),
+            entry('-', "\\textdash"),
+            entry('™', "\\testtrademark"),
+            entry('¡', "\\texteclamdown"),
+            entry('¿', "\\textquestiondown"),
+            entry('£', "\\pounds"),
+            entry('#', "\\#"),
+            entry('&', "\\&"),
+            entry('§', "\\S"),
+            entry('\\', "\\textbackslash"),
+            entry('—', "\\textemdash"),
+            entry('®', "\\textregistered"),
+            entry('ⓐ', "\\textcircled{a}"),
+            entry('©', "\\copyright")
+    );
 
     @Override
     public String transform(String text) {
-        log.debug(latex.toString());
         log.debug("in  = " + text);
-        for (Pair<String> pair : latex)
-            text = text.replaceAll(Pattern.quote(pair.getFirst()), pair.getSecond());
-        log.debug("out = " + text);
-        return text;
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (specialSymbols.containsKey(text.charAt(i)))
+                builder.append(specialSymbols.get(text.charAt(i)));
+            else
+                builder.append(text.charAt(i));
+        }
+        log.debug("out = " + builder);
+        return builder.toString();
     }
 }
