@@ -4,6 +4,11 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * Model for input text statistics
+ *
+ * @author Piotr Parzysz
+ */
 @Data
 public class RequestTextStatistic {
 
