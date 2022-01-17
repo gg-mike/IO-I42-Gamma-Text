@@ -17,12 +17,12 @@ class WordSplitterTest {
     }
 
     @Test
-    void basicTest() {
+    void testBasic() {
         assertEquals(List.of(new String[]{"aaa", "bbb", "ccc"}), splitter.split("aaa bbb ccc"));
     }
 
     @Test
-    void emptyInputTest() {
+    void testEmptyInput() {
         assertEquals(List.of(new String[]{}), splitter.split(""));
         assertEquals(List.of(new String[]{}), splitter.split("\n\n\n"));
         assertEquals(List.of(new String[]{}), splitter.split("\t\t\t"));
@@ -31,7 +31,7 @@ class WordSplitterTest {
     }
 
     @Test
-    void advancedTest() {
+    void testAdvanced() {
         assertEquals(List.of(new String[]{"a", "b", "dd", "s"}), splitter.split("a    b dd \ts"));
         assertEquals(List.of(new String[]{"a", "b", "c"}), splitter.split("a\n\n\nb\t\n   c"));
     }
