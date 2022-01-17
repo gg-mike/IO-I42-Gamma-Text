@@ -5,6 +5,11 @@ import lombok.Data;
 
 import java.util.Map;
 
+/**
+ * Model for output text statistics
+ *
+ * @author Piotr Parzysz
+ */
 @Data
 @AllArgsConstructor
 public class ResponseTextStatistic {
