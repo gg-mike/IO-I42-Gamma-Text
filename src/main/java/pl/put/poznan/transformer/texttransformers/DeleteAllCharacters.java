@@ -12,8 +12,10 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class DeleteAllCharacters implements TextTransformer {
+
     @Override
     public String transform(String text){
-        return text.replaceAll("[^A-Za-z0-9' ']", "");
+        return text.replaceAll("[^A-Za-z0-9 ]", "");
     }
+
 }
