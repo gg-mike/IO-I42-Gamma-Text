@@ -14,7 +14,21 @@ class CaesarCipherTest {
     }
 
     @Test
-    void simpleCiphering() {
+    void testSimpleCiphering() {
         assertEquals("XYZABCDEFGHIJKLMNOPQRSTUVW", cipher.cipher("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 23));
+    }
+
+    @Test
+    void testDifferentCases() {
+        assertEquals("XYZABC", cipher.cipher("ABCDEF", 23));
+        assertEquals("DeFghI", cipher.cipher("AbCdeF", 3));
+        assertEquals("xyzabc", cipher.cipher("abcdef", -3));
+    }
+
+    @Test
+    void testCipherShift() {
+        assertEquals("abc", cipher.cipher("abc", 0));
+        assertEquals("abc", cipher.cipher("abc", 26));
+        assertEquals("abc", cipher.cipher("abc", -26));
     }
 }

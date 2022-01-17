@@ -28,7 +28,6 @@ public class LatexTextTransformer implements TextTransformer {
 
     @Override
     public String transform(String text) {
-        log.debug(latex.toString());
         log.debug("in  = " + text);
         for (Pair<String> pair : latex)
             text = text.replaceAll(Pattern.quote(pair.getFirst()), pair.getSecond());

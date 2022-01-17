@@ -2,14 +2,15 @@ package pl.put.poznan.transformer.texttransformers;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DeleteDuplicatesTransformerTest {
     private DeleteDuplicatesTransformer transformer;
 
     @BeforeEach
-    void init() { transformer = new DeleteDuplicatesTransformer(); }
+    void init() {
+        transformer = new DeleteDuplicatesTransformer();
+    }
 
     @Test
     void testSimpleTransformation() {
